@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "jest"
   },
   "repository": {
     "type": "git",
@@ -17,6 +17,7 @@
   },
   "homepage": "https://github.com/joaobuga35/Clean-Node-API-Personal-Trainers#readme",
   "devDependencies": {
+    "@types/jest": "^29.5.1",
     "@types/node": "^18.16.1",
     "@typescript-eslint/eslint-plugin": "^5.59.1",
     "eslint": "^8.39.0",
@@ -26,7 +27,9 @@
     "eslint-plugin-promise": "^6.1.1",
     "git-commit-msg-linter": "^4.10.0",
     "husky": "^8.0.3",
+    "jest": "^29.5.0",
     "lint-staged": "^13.2.2",
+    "ts-jest": "^29.1.0",
     "ts-node-dev": "^2.0.0",
     "typescript": "^5.0.4"
   }
