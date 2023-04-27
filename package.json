@@ -17,6 +17,9 @@
   },
   "homepage": "https://github.com/joaobuga35/Clean-Node-API-Personal-Trainers#readme",
   "devDependencies": {
-    "git-commit-msg-linter": "^4.10.0"
+    "@types/node": "^18.16.1",
+    "git-commit-msg-linter": "^4.10.0",
+    "ts-node-dev": "^2.0.0",
+    "typescript": "^5.0.4"
   }
 }
