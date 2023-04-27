@@ -15,5 +15,8 @@
   "bugs": {
     "url": "https://github.com/joaobuga35/Clean-Node-API-Personal-Trainers/issues"
   },
-  "homepage": "https://github.com/joaobuga35/Clean-Node-API-Personal-Trainers#readme"
+  "homepage": "https://github.com/joaobuga35/Clean-Node-API-Personal-Trainers#readme",
+  "devDependencies": {
+    "git-commit-msg-linter": "^4.10.0"
+  }
 }
