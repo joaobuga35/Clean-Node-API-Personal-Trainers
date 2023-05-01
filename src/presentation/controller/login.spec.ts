@@ -1,3 +1,4 @@
+
 import { LoginController } from "./login";
 
 describe("Login Controller", () => {
@@ -12,5 +13,6 @@ describe("Login Controller", () => {
 		};
 		const httpResponse = sut.handle(httpRequest);
 		expect(httpResponse.statusCode).toBe(400);
+		expect(httpResponse.body).toEqual(new Error("Missing param: username"));
 	});
 });
