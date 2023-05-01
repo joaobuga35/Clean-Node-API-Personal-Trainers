@@ -15,4 +15,18 @@ describe("Login Controller", () => {
 		expect(httpResponse.statusCode).toBe(400);
 		expect(httpResponse.body).toEqual(new Error("Missing param: username"));
 	});
+
+	test("Should return 400 if missign email", () => {
+		const sut = new LoginController();
+		const httpRequest = {
+			body: {
+				username: "any_username",
+				password: "any_password",
+				passwordConfirmation: "any_password"
+			}
+		};
+		const httpResponse = sut.handle(httpRequest);
+		expect(httpResponse.statusCode).toBe(400);
+		expect(httpResponse.body).toEqual(new Error("Missing param: email"));
+	});
 });
