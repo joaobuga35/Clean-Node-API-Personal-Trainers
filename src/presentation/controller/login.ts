@@ -1,21 +1,16 @@
+import { MissingParamError } from "../../errors";
 import { IHttpRequest, IHttpResponse } from "../../interfaces/http.interface";
+import { badRequest } from "../helpers/http.helper";
 
 export class LoginController{
 	handle(httpRequest: IHttpRequest): IHttpResponse{
 		const requiredFields = ["username", "email","password","passwordConfirmation"];
-		
-		if (!httpRequest.body.username) {
-			return {
-				statusCode: 400,
-				body: new Error("Missing param: username")
-			};
-		}
 
-		if (!httpRequest.body.email) {
-			return {
-				statusCode: 400,
-				body: new Error("Missing param: email")
-			};
+		for(const fields of requiredFields){
+			if (!httpRequest.body[fields]) {
+				return badRequest(new MissingParamError(fields));
+			}
 		}
 	}
+
 }
