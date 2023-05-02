@@ -3,7 +3,7 @@ import { MissingParamError } from "../../errors";
 import { LoginController } from "./login";
 
 describe("Login Controller", () => {
-	test("Should return 400 if missign username", () => {
+	test("Should return 400 if missing username", () => {
 		const sut = new LoginController();
 		const httpRequest = {
 			body: {
@@ -17,7 +17,7 @@ describe("Login Controller", () => {
 		expect(httpResponse.body).toEqual(new MissingParamError("username"));
 	});
 
-	test("Should return 400 if missign email", () => {
+	test("Should return 400 if missing email", () => {
 		const sut = new LoginController();
 		const httpRequest = {
 			body: {
@@ -42,6 +42,20 @@ describe("Login Controller", () => {
 		};
 		const httpResponse = sut.handle(httpRequest);
 		expect(httpResponse.statusCode).toBe(400);
-		expect(httpResponse.body).toEqual(new Error("Missing param: password"));
+		expect(httpResponse.body).toEqual(new MissingParamError("password"));
+	});
+
+	test("Should return 400 if missign passwordConfirmation", () => {
+		const sut = new LoginController();
+		const httpRequest = {
+			body: {
+				username: "any_username",
+				email: "any_email@mail.com",
+				password: "any_password"
+			}
+		};
+		const httpResponse = sut.handle(httpRequest);
+		expect(httpResponse.statusCode).toBe(400);
+		expect(httpResponse.body).toEqual(new MissingParamError("passwordConfirmation"));
 	});
 });
