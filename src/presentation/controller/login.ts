@@ -1,5 +1,9 @@
+import { IHttpRequest, IHttpResponse } from "../../interfaces/http.interface";
+
 export class LoginController{
-	handle(httpRequest: any): any{
+	handle(httpRequest: IHttpRequest): IHttpResponse{
+		const requiredFields = ["username", "email","password","passwordConfirmation"];
+		
 		if (!httpRequest.body.username) {
 			return {
 				statusCode: 400,
