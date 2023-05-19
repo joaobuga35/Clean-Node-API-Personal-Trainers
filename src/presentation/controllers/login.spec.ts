@@ -1,10 +1,13 @@
 
-import { MissingParamError } from "../../errors";
+import { MissingParamError, InvalidParamError } from "../errors/errors";
 import { LoginController } from "./login";
 
+const makeSut = () => {
+	return new LoginController();
+};
 describe("Login Controller", () => {
 	test("Should return 400 if missing username", () => {
-		const sut = new LoginController();
+		const sut = makeSut();
 		const httpRequest = {
 			body: {
 				email: "any_email@mail.com",
@@ -18,7 +21,7 @@ describe("Login Controller", () => {
 	});
 
 	test("Should return 400 if missing email", () => {
-		const sut = new LoginController();
+		const sut = makeSut();
 		const httpRequest = {
 			body: {
 				username: "any_username",
@@ -32,7 +35,7 @@ describe("Login Controller", () => {
 	});
 
 	test("Should return 400 if missign password", () => {
-		const sut = new LoginController();
+		const sut = makeSut();
 		const httpRequest = {
 			body: {
 				username: "any_username",
@@ -46,7 +49,7 @@ describe("Login Controller", () => {
 	});
 
 	test("Should return 400 if missign passwordConfirmation", () => {
-		const sut = new LoginController();
+		const sut = makeSut();
 		const httpRequest = {
 			body: {
 				username: "any_username",
@@ -57,5 +60,20 @@ describe("Login Controller", () => {
 		const httpResponse = sut.handle(httpRequest);
 		expect(httpResponse.statusCode).toBe(400);
 		expect(httpResponse.body).toEqual(new MissingParamError("passwordConfirmation"));
+	});
+
+	test("Should return 400 if an invalid email is provided", () => {
+		const sut = makeSut();
+		const httpRequest = {
+			body: {
+				username: "any_username",
+				email: "invalid@mail.com",
+				password: "any_password",
+				passwordConfirmation: "any_password"
+			}
+		};
+		const httpResponse = sut.handle(httpRequest);
+		expect(httpResponse.statusCode).toBe(400);
+		expect(httpResponse.body).toEqual(new InvalidParamError("passwordConfirmation"));
 	});
 });

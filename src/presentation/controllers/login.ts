@@ -1,5 +1,5 @@
-import { MissingParamError } from "../../errors";
-import { IHttpRequest, IHttpResponse } from "../../interfaces/http.interface";
+import { MissingParamError } from "../errors/errors";
+import { IHttpRequest, IHttpResponse } from "../interfaces/http.interface";
 import { badRequest } from "../helpers/http.helper";
 
 export class LoginController{
